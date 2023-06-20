@@ -1,29 +1,58 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
-    <title>Weather</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
     <link rel="icon" href="/img/weather.png">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <div class="main-content">
-        {{>header}}
+    <div class="container">
+        <div class="form-container">
+            <form>
+                {{!-- <label for="location">Enter a location:</label> --}}
+                <input type="text" id="searchText" placeholder="Vadodara, Gujarat">
+                <button>Search</button>
+                {{!-- <p id="msg-1"></p>
+                <p id="msg-2"></p> --}}
+            </form>
+        </div>
+        <div id="loading"></div>
 
-        <p>Use this site to get your weather!</p>
-        <form>
-            <label for="location">Enter a location:</label>
-            <input type="text" id="location">
-            <button>Search</button>
+        <div id="data-container">
+            <div class="place">
+                <h1 id="place"></h1>
+            </div>
+            <div class="data">
+                <div class="location">
+                    <p>
+                        <span id="location"></span>
+                        <br>
+                        <span id="date"></span>
+                    </p>
+                </div>
+                <div class="temperature">
+                    <p id="temperature"><span></span><span> &#176;C </span><span></span></p>
+                    <img id="weatherImage" src="" alt="">
+                </div>
+                <div class="weatherdata">
+                    <h3 id="status" style="font-size: 25px;"></h3>
+                    <ul>
+                        <li>Precipitation: <span id="prep"></span><span> %</span></li>
+                        <li>Wind: <span id="wind"></span><span></span> km/h</li>
+                        <li>Humidity: <span id="humidity"></span><span> %</span></li>
+                        <li>Feelslike: <span id="feelslike"></span><span> &#176;C</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-            <p id="msg-1"></p>
-            <p id="msg-2"></p>
-        </form>
+
+        {{!-- {{>footer}} --}}
     </div>
-
-    {{>footer}}
 
 
     <script src="/js/app.js"></script>

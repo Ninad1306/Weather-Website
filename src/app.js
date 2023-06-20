@@ -42,27 +42,34 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-    if(!req.query.address){
+    if (!req.query.address) {
         return res.send({
             error: "You have to provide an address."
         })
     }
 
-    geocode(req.query.address, (error, {latitude,longitude,label} = {}) => {
-        if(error) res.send({error});
-        else{
-            forecast(latitude, longitude, (error, {temperature, feelslike}) => {
-                if(error) res.send({error});
-                else{
+    geocode(req.query.address, (error, { latitude, longitude, label } = {}) => {
+        if (error) res.send({ error });
+        else {
+            forecast(latitude, longitude, (error, { temperature, feelslike, precip, wind_speed, wind_dir, humidity,localtime,weather_descriptions,weather_icons }) => {
+                if (error) res.send({ error });
+                else {
                     res.send({
                         temperature,
                         feelslike,
-                        Location: label,
+                        precip,
+                        wind_speed,
+                        wind_dir,
+                        humidity,
+                        localtime,
+                        location: label,
                         address: req.query.address,
+                        weather_descriptions,
+                        weather_icons,
                     })
                 }
             })
-        } 
+        }
     })
 
     // res.send({
